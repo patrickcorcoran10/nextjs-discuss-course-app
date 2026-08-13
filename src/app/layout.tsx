@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/app/providers"
+import Header from '@/components/header'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,12 @@ export default function RootLayout({
       className={inter.className}
       cz-shortcut-listen="true"
       >
+        <div className="container mx-auto px-3 mas-w-6xl">
+
+        
+        <Header/>
           <Providers>{children}</Providers>
+          </div>
         </body>
     </html>
   );
