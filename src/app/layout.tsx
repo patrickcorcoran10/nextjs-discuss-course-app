@@ -25,8 +25,11 @@ export default function RootLayout({
         <div className="container mx-auto px-3 mas-w-6xl">
 
         
-        <Header/>
-          <Providers>{children}</Providers>
+       
+          <Providers>
+             <Header/>
+            {children}
+            </Providers>
           </div>
         </body>
     </html>
