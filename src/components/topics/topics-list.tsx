@@ -3,7 +3,7 @@ import {Chip} from '@nextui-org/react'
 import Link from 'next/link'
 import paths from '@/paths'
 
-export default async function PostList() {
+export default async function TopicsList() {
     const topics = await db.topic.findMany();
     
     const renderedTopics = topics.map((topic) => {
