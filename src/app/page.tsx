@@ -1,5 +1,5 @@
 import TopicCreateForm from '@/components/topics/topic-create-form'
-import PostList from '@/components/topics/post-list'
+import PostList from '@/components/topics/topics-list'
 import {Divider} from '@nextui-org/react'
 
 export default  function Home() {
