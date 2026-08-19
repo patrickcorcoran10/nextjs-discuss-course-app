@@ -15,7 +15,8 @@ export const {handlers: {GET, POST}, auth, signOut, signIn} = NextAuth({
     providers: [
         Github({
             clientId: GITHUB_CLIENT_ID,
-            clientSecret: GITHUB_CLIENT_SECRET
+            clientSecret: GITHUB_CLIENT_SECRET,
+            issuer: "https://github.com/login/oauth",
         })
     ],
     callbacks: {

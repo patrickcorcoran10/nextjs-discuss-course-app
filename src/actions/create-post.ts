@@ -20,7 +20,10 @@ interface CreatePostFormState {
     }
 }
 
+
+
 export async function createPost(
+        slug: string,
         formState:CreatePostFormState, 
         formData:FormData
     ): Promise<CreatePostFormState> 
@@ -37,14 +40,24 @@ export async function createPost(
     }
 
     const session = await auth();
-    if (!session || !session?.user) {
+    if (!session || !session.user || !session.user.id) {
         return {
             errors: {
                 _form: ["You must be logged in to submit"]
             }
         }
     }
-    console.log(session)
+
+    const topic = await db.topic.findFirst({
+        where: {slug}
+    })
+    if (!topic) {
+        return {
+            errors: {
+                _form: ["Cannot find topic"]
+            }
+        }
+    }
     let post: Post;
 
        try {
@@ -52,8 +65,8 @@ export async function createPost(
             data: {
                 title: result.data.title,
                 content: result.data.content,
-                // userId: null,
-                // topicId: null
+                userId: session.user.id,
+                topicId: topic.id
             }
         })
     } catch(err:unknown) {
@@ -73,11 +86,10 @@ export async function createPost(
             }
         }
     }
-    revalidatePath('/')
-    redirect(paths.topicShow(post.title))
-
-    return {
-        errors: {}
-    }
     // todo: revalidate the topic show page
+    revalidatePath(paths.topicShow(slug))
+    redirect(paths.postShow(slug, post.id))
+
+
+    
 }
