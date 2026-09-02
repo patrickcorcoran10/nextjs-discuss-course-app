@@ -57,7 +57,7 @@ GITHUB_CLIENT_ID="your-github-oauth-client-id"
 GITHUB_CLIENT_SECRET="your-github-oauth-client-secret"
 ```
 
-The authentication configuration reads the GitHub credentials from `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` in `src/auth.ts`.
+The authentication configuration accepts either `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` or the standard NextAuth names `AUTH_GITHUB_ID` / `AUTH_GITHUB_SECRET`. Add the variables to your hosting provider's project settings as well as to `.env.local`.
 
 For local OAuth development, add this callback URL to the GitHub OAuth app:
 
@@ -160,7 +160,7 @@ The application can be deployed to platforms that support Next.js, such as [Verc
 
 - A managed PostgreSQL `DATABASE_URL`
 - A strong `AUTH_SECRET`
-- GitHub OAuth credentials
+- GitHub OAuth credentials (`GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`, or `AUTH_GITHUB_ID` and `AUTH_GITHUB_SECRET`)
 - The production callback URL registered in the GitHub OAuth application
 
 Build the application with:
